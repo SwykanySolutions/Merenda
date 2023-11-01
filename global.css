@@ -1,0 +1,7 @@
+.invert-img{
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+:is([data-mode="dark"] .dark\:datepicker-icon-red)::-webkit-calendar-picker-indicator{
+    color: red;
+}

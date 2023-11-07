@@ -19,8 +19,8 @@
 
         <?php
             // Componets Modal
-            require "./Components/Modals/Login.php";
             require "./Components/Modals/Register.php";
+            require "./Components/Modals/Login.php";
             require "./Components/Modals/Termos.php";
             
             // Scripts end body

@@ -65,13 +65,14 @@ const btn_decline_terms = document.getElementById("btn-decline-terms");
 const select_curso = document.getElementById("select-curso");
 
 //Modals 
-const Modal_registro = new Modal(document.getElementById("registration-modal"));
-const Modal_login = new Modal(document.getElementById("authentication-modal"));
-const Modal_terms = new Modal(document.getElementById("terms-modal"));
+const Modal_registro = document.getElementById("registration-modal");
+const Modal_login = document.getElementById("authentication-modal");
+const Modal_terms = document.getElementById("terms-modal");
 
-// Alerts
-const Alert_sucess = new Alert(document.getElementById("alert-sucess"));
-const Alert_error = new Alert(document.getElementById("alert-error"));
+// Alert 
+
+const Alert_sucess_registro = document.getElementById("alert-sucess-registro");
+const Alert_error_registro = document.getElementById("alert-error-registro");
 
 // componentes puros 
 const infoNome = document.getElementById("infoNome");
@@ -422,7 +423,6 @@ async function validarRA(input) {
     
     if (retorno.ok) {
         const result = await retorno.json();
-        console.log(result);
         if (!result.status) {
             if (!info_ra.classList.contains("text-red-600")) {
                 info_ra.classList.add("text-red-600");
@@ -579,7 +579,6 @@ input_registro_confirm_email.addEventListener("blur", (e) => {
     }
 });
 
-
 // function validation password
 input_registro_senha.addEventListener("change", (e) => {
     ProgressBarPasswordStrength(e);
@@ -698,19 +697,26 @@ form_registro.addEventListener("submit", async (e) => {
             // Converte a resposta para o formato desejado (por exemplo, JSON)
             const result = await response.json();
             if (result.status) {
-                Alert_sucess.Show();
-                setTimeout(() => { if(!document.getElementById("alert-sucess").classList.contains("hidden")){ Alert_sucess.Hide(); } }, 5000)
-                Modal_registro.hide();
-                setTimeout(() => Modal_login.show(), 5000);
+                Modal_registro.toggle();
+                Alert_sucess_registro.addEventListener("hide", () => {
+                    Modal_login.toggle();
+                });
+                Alert_sucess_registro.show();
             }
         } else {
             console.error("Erro na solicitação: " + response.status);
-            Alert_error.Show();
-            setTimeout(() => { if(!document.getElementById("alert-error").classList.contains("hidden")){ Alert_error.Hide(); } }, 5000)
+            Modal_registro.toggle();
+            Alert_error_registro.addEventListener("hide", () => {
+                Modal_registro.toggle();
+            });
+            Alert_error_registro.show();
         }
     } catch (error) {
         console.error("Erro na solicitação:", error);
-        Alert_error.Show();
-        setTimeout(() => { if(!document.getElementById("alert-error").classList.contains("hidden")){ Alert_error.Hide(); } }, 5000)
+        Modal_registro.toggle();
+        Alert_error_registro.addEventListener("hide", () => {
+            Modal_registro.toggle();
+        });
+        Alert_error_registro.show();   
     }
 });

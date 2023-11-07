@@ -1,17 +1,4 @@
-/**
- * 
- * @param {Event} e 
- */
-function validate_login_email(e) {
-    /**
-     * @type string
-     */
-    const value = e.target.value;
-    if ( !value.includes("@etec.sp.gov.br")) {
-        e.target.select();
 
-    }
-}
 /**
  * 
  * @param {string} src 
@@ -24,11 +11,10 @@ function INCLUDE(src, location) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    
     // Importção de scripts
     INCLUDE("/Merenda/js/Components/Modal.js", "body");
     INCLUDE("/Merenda/js/Components/Alert.js", "body");
-    INCLUDE("/Merenda/js/functions-modal-register.js", "body");
-    INCLUDE("/Merenda/js/functions-modal-login.js", "body");
     
     document.querySelectorAll(".item-navbar-active").forEach((element) => {
         element.classList.remove("item-navbar-active");
@@ -41,8 +27,5 @@ document.addEventListener("DOMContentLoaded", () => {
         const classes = "text-gray-900 dark:text-gray-300 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700".split(" ");
         element.classList.add(...classes);
     })
-
     
 });
-
-document.getElementById("input-login").addEventListener("change", (e) => validate_login_email(e) )

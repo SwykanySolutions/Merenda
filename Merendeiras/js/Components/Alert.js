@@ -11,7 +11,7 @@ document.querySelectorAll('[data-dismiss-target]').forEach((trigger) => {
             if (alert.classList.contains("ease-out")) {
                 alert.classList.remove("transition-opacity", "duration-300", "ease-out", "opacity-0");
             }
-            alert.classList.add("transition-opacity", "duration-300", "ease-in");
+            alert.classList.add("transition-opacity", "duration-300", "ease-in", "opacity-100");
             setTimeout(()=> { alert.classList.remove("hidden") }, 300);
         }
         alert.dispatchEvent(new Event("show"));
